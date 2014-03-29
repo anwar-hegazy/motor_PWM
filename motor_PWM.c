@@ -59,10 +59,10 @@ int main(void){
 	*/
 
 	// Setup device as a slave receiver for TWI
-	DDRC &= ~(1 << DDC4); // Configure the SDA pin as a pull-up
-	PORTC |= 1 << PORTC4;
-	DDRC &= ~(1 << DDC5); // Configure the SCL pin as a pull-up
-	PORTC |= 1 << PORTC5;
+	DDRC &= ~(1 << DDC4); // Configure the SDA pin as a non-pull-up
+	PORTC &= ~(1 << PORTC4);
+	DDRC &= ~(1 << DDC5); // Configure the SCL pin as a non-pull-up
+	PORTC &= ~(1 << PORTC5);
 	PRR &= ~(1 << PRTWI);	// Set the PRTWI bit to zero (ie. disable power-saving mode)
 	TWAR = 0xa << 1;	// Set the address of the chip to 10, and TWGCE bit to zero (ignore general calls)
 	TWCR = 0x45;	// Enable TWI with appropriate settings for slave receiver, enabling interrupts
